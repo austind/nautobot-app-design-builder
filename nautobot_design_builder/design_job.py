@@ -303,7 +303,9 @@ class DesignJob(Job, ABC):  # pylint: disable=too-many-instance-attributes
         else:
             context = {}
 
-        if hasattr(self.Meta, "design_file"):
+        if hasattr(self, "design_files"):
+            design_files = self.design_files
+        elif hasattr(self.Meta, "design_file"):
             design_files = [self.Meta.design_file]
         elif hasattr(self.Meta, "design_files"):
             design_files = self.Meta.design_files
